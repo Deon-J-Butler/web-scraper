@@ -6,5 +6,9 @@ res = requests.get(MARA)
 resText = res.text
 soup = BeautifulSoup(resText, 'html.parser')
 
+tables = soup.find_all('table')
 trs = soup.find_all('tr')
-print(trs[0].span.text + ':', trs[0].contents[1].text)
+importantData = trs[:16]
+
+for x in range(len(importantData)):
+    print(trs[x].span.text + ':', trs[x].contents[1].text)
