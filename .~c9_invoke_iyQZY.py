@@ -1,4 +1,4 @@
-import requests, time
+import requests
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -17,16 +17,16 @@ chromeDriver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().inst
 edgeDriver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
 
 #Choose your correct driver
-edgeDriver.get(url)
+firefoxDriver.get(url)
+pageSource = firefoxDriver.page_source
 
-#Set sleep timer so data can adequately pull before web page closes
-time.sleep(5)
+if value in pageSource:
+    print("yes")
+else:
+    print("no")
 
-for i in range(1, 6):
-    #Can be retreived by using browser devtools, selecting element in question, and choosing "Copy XPath"
-    xPath = '//*[@id="data-util-col"]/section[2]/table/tbody/tr['+str(i)+']'
-    elem = edgeDriver.find_elements_by_xpath(xPath)
-    print(elem[0].text.split("\n"))
+firefoxDriver.close()
 
-#Close your driver
-edgeDriver.close()
+
+
+
