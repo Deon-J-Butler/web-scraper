@@ -1,8 +1,22 @@
+#requests pulls data from server, time provides methods to manipulate time in code
 import requests, time
+
+#webdriver is a web framework that permits the execution of cross-browser testing
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.edge.service import Service as EdgeService
+
+"""____________________________________________________________________________
+   !!Flash task!! Research what services the webdriver_manager library provide |
+   ____________________________________________________________________________|
+| |
+| |
+| |
+| |
+"""
+
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
@@ -12,21 +26,29 @@ url = "https://finance.yahoo.com/chart/AAL#eyJpbnRlcnZhbCI6ImRheSIsInBlcmlvZGlja
 req = requests.get(url)
 text = req.text
 
+#Uncomment the line for the browser you have installed (31, 34, or 37)
+#Opens Firefox browser
 firefoxDriver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
-chromeDriver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-edgeDriver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
+
+#Opens Chrome browser
+# chromeDriver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+#Opens Edge browser
+# edgeDriver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
 
 #Choose your correct driver
-edgeDriver.get(url)
+firefoxDriver.get(url)
 
-#Set sleep timer so data can adequately pull before web page closes
-time.sleep(5)
+#Set sleep timer so page can load and data can pull before the webdriver closes
+time.sleep(1)
 
 for i in range(1, 6):
     #Can be retreived by using browser devtools, selecting element in question, and choosing "Copy XPath"
-    xPath = '//*[@id="data-util-col"]/section[2]/table/tbody/tr['+str(i)+']'
-    elem = edgeDriver.find_elements_by_xpath(xPath)
+    xPath = '//section[@data-yaft-module="tdv2-applet-trending_tickers_title"]/table/tbody/tr['+str(i)+']'
+    # /html/body/div[1]/div/div/div[1]/div/div[3]/div/div/section/section/aside/div/div[2]/section/div/section[2]
+    #Change to your driver name
+    elem = firefoxDriver.find_elements(By.XPATH, xPath)
     print(elem[0].text.split("\n"))
 
 #Close your driver
-edgeDriver.close()
+firefoxDriver.close()
