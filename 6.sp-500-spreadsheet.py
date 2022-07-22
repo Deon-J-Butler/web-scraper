@@ -1,7 +1,13 @@
+'''Given Solution for the previous program'''
+
 import requests
 from bs4 import BeautifulSoup
+
+#Pandas is a package that can be used to help display data in a uniform standard
 import pandas as pd
-import time, os, datetime
+
+#These packages do exactly as their name suggests, works with time based function (start, wait), grabs datetime time stamps, and can interact with the operating system to do things like open, close, read, and write to files
+import time, datetime, os
 
 
 def getFinancialInformation(symbol):

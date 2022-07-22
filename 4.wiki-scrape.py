@@ -6,16 +6,18 @@ res = requests.get(wikiLink)
 resText = res.text
 soup = BeautifulSoup(resText, 'html.parser')
 
+#Take turns commenting out/uncommenting the different solutions to get a better understanding of what each does
+
 '''My Solution'''
-trs = soup.find_all('tr')[:504]
+trs = soup.find_all('tr')[1:504]
 tickerSymbols = []
 
 for x in range(len(trs)):
     tickerSymbols.append(trs[x].a.text)
 
-print(tickerSymbols[1:])
+print(tickerSymbols)
 
-# '''Given Solution'''
+'''Given Solution'''
 # tickerSymbols = []
 # tbody = soup.find_all('tbody')
 

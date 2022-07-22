@@ -6,14 +6,16 @@ res = requests.get(MARA)
 resText = res.text
 soup = BeautifulSoup(resText, 'html.parser')
 
+#Take turns commenting out/uncommenting the different solutions to get a better understanding of what each does
+
 ''' My answer for challenge problem'''
 trs = soup.find_all('tr')
 importantData = trs[:16]
 
 for x in range(len(importantData)):
-    print(trs[x].span.text + ':', trs[x].contents[1].text)
+    print(importantData[x].span.text + ':', importantData[x].contents[1].text)
 
-# '''Solution for challenge problem'''
+'''Given solution for challenge problem'''
 # finalName = "1y Target Est"
 # trs = soup.find_all('tr')
 
@@ -35,3 +37,12 @@ for x in range(len(importantData)):
 #         break
 
 # print(namVal)
+
+"""____________________________________________________________________________
+| |   !!Flash task!! What is the major difference between these two solutions? |
+| |____________________________________________________________________________|
+| |
+| |
+| |
+| |
+"""

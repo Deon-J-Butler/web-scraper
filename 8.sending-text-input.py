@@ -1,3 +1,5 @@
+'''This program uses a webdriver to open the browser, enter input, click links'''
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
