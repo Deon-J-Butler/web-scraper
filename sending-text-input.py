@@ -11,12 +11,10 @@ browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install(
 
 browser.get(url)
 
-inputElem = browser.find_element_by_id("lst-ib")
-inputElem.send_keys("Hello World")
+inputElem = browser.find_element(By.NAME, 'q')
+inputElem.send_keys("\"deonb.me\"")
 inputElem.submit()
 
-element = WebDriverWait(browser, 10).until(ec.visibility_of_element_located(By.XPATH, '//*[@id=')).click()
+element = WebDriverWait(browser, 10).until(ec.visibility_of_element_located((By.XPATH, '//*[@id="dimg_1"]'))).click()
 
-element = WebDriverWait(browser, 10).until(ec.visibility_of_element_located(By.XPATH, '//XPATH')).click()
-
-element = WebDriverWait(browser, 10).until(ec.visibility_of_element_located(By.XPATH, '//XPATH')).click()
+element = WebDriverWait(browser, 10).until(ec.visibility_of_element_located((By.XPATH, '//*[@href="https://www.linkedin.com/in/deon-j-butler?trk=public_profile_browsemap"]'))).click()
